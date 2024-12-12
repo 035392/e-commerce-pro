@@ -1,0 +1,83 @@
+name: Python Package using Conda
+
+on: [push]
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 5
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+    - name: Add conda to system path
+      run: |
+        # $CONDA is an environment variable pointing to the root of the miniconda directory
+        echo $CONDA/bin >> $GITHUB_PATH
+    - name: Install dependencies
+      run: |
+        conda env update --file environment.yml --name base
+    - name: Lint with flake8
+      run: |
+        conda install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        conda install pytest
+        pytest
+        HTML (Structure de la page)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma boutique en ligne</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Bienvenue sur ma boutique</h1>
+    <div class="product">
+        <img src="produit1.jpg" alt="Produit 1">
+        <h2>Produit 1</h2>
+        <p>Description du produit</p>
+        <button>Ajouter au panier</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+CSS (Style de la page)
+.product {
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+}
+
+JavaScript (Interactivité)
+const addToCartButtons = document.querySelectorAll('.addToCartButton');
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Logique pour ajouter le produit au panier
+        console.log('Produit ajouté au panier');
+    });
+});
+
+Node.js (Back-end)
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+
