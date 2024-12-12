@@ -1,0 +1,48 @@
+HTML (Structure de la page)
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma boutique en ligne</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Bienvenue sur ma boutique</h1>
+    <div class="product">
+        <img src="produit1.jpg" alt="Produit 1">
+        <h2>Produit 1</h2>
+        <p>Description du produit</p>
+        <button>Ajouter au panier</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+CSS (Style de la page)
+.product {
+    border: 1px solid black;
+    padding: 20px;
+    text-align: center;
+}
+
+JavaScript (Interactivité)
+const addToCartButtons = document.querySelectorAll('.addToCartButton');
+
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Logique pour ajouter le produit au panier
+        console.log('Produit ajouté au panier');
+    });
+});
+
+Node.js (Back-end)
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
