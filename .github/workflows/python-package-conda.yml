@@ -34,9 +34,6 @@ jobs:
         pytest
         HTML (Structure de la page)
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Ma boutique en ligne</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
